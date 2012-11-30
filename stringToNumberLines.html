@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+		function textStuff(){
+			var str="work bench horse"; //string place holder
+			
+			// make arrays
+			var numberArray = new Array();
+			var theNumber = new Array();
+			var n=str.split(""); // split string in to array
+			for(var i=0; i<n.length;i++){
+				theNumber[i] = str.charCodeAt(i); // gets charicter code for each
+			}
+			//console.log(theNumber.toString());
+			makeShap(theNumber);
+		}
+
+		function makeShap(theNumber){
+			var canvas = document.getElementById('theCanvas');
+			var context = canvas.getContext('2d');
+			
+			// if number is even move on if odd add randum number
+			if (theNumber.length%2 == 0){ //check if numbr is even
+			}
+			else{
+				addNum = theNumber.length + 1;
+				console.log(addNum);
+				theNumber[addNum] = theNumber[1] + theNumber[2];//Math.floor((Math.random()*500)+1);
+				}
+			
+			context.moveTo(0,0); // start drowing 
+			var num3 = 5;
+			
+			// loop thru points on path
+			while(0<theNumber.length){
+				console.log(num3);
+				var num1 = theNumber.shift();
+				var num2 = theNumber.shift();
+				
+				//context.beginPath();
+				context.lineTo(num1+num3,num2+num3);
+				num3 = num3 + 10;
+			}
+			// close pathe
+			context.stroke();
+			context.fill();	
+			context.closePath();
+			
+		}
+	</script>
+</head>
+<body>
+<div id="start"><input type="button" onclick="textStuff()" value="textStuff" /></div>
+
+<div>
+<canvas id="theCanvas" width="500" height="500"></canvas>
+</div>
+</body>
+</html>

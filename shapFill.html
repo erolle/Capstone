@@ -1,0 +1,25 @@
+<!Doctype HTML>
+<html>
+<head>
+	<script type="text/javascript">
+		window.onload = function(){
+			var canvas = document.getElementById('theCanvas');
+			var context = canvas.getContext('2d');
+			var num1 = Math.floor((Math.random()*500)+1);
+			var num2 = Math.floor((Math.random()*500)+1);
+			var i = 0;
+			
+			context.moveTo(0,0);
+			context.lineTo(num1,num2);
+			context.lineTo(num1*2,num2*2);
+			context.lineTo(num2,num1);
+			context.closePath();
+			context.stroke();
+			context.fill();		
+		}
+	</script>
+</head>
+<body>
+	<canvas id="theCanvas" width="500" height="500"></canvas>
+</body>
+</html>

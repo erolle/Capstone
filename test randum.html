@@ -1,0 +1,58 @@
+<!Doctype HTML>
+<html>
+<head>
+    <script>
+        start = {
+        // start somewhere within the canvas element
+        x: random(canvas.width),
+        y: random(canvas.height) 
+    };
+    context.moveTo(start.x, start.y);
+    prev = {};
+    prev.length = random(minLineLength, maxLineLength);
+    prev.angle = random(360);
+    prev.x = start.x + prev.length * Math.cos(prev.angle);
+    prev.y = start.y + prev.length * Math.sin(prev.angle);
+    
+    j = 1;
+    
+    keepGoing = true;
+    while (keepGoing) {
+        j++;
+        distanceBackToStart = Math.round(
+            Math.sqrt(Math.pow(prev.x - start.x, 2) + Math.pow(prev.y - start.y, 2)));
+        angleBackToStart = (Math.atan((prev.y - start.y) / (prev.x - start.x)) * 180 / Math.pi) % 360;
+        if (isNaN(angleBackToStart)) {
+            angleBackToStart = random(360);
+        }
+        current = {};
+        if (distanceBackToStart > minLineLength) {
+            current.length = random(minLineLength, distanceBackToStart);
+            current.angle = random(angleBackToStart - 90 / j, angleBackToStart + 90 / j) % 360;
+            current.x = prev.x + current.length * Math.cos(current.angle);
+            current.y = prev.y + current.length * Math.sin(current.angle);
+            prev = current;
+        } else {
+            // if there's only a short distance back to the start, join up the curve
+            current.length = distanceBackToStart;
+            current.angle = angleBackToStart;
+            current.x = start.x;
+            current.y = start.y;
+            keepGoing = false;
+        }
+        context.lineTo(current.x, current.y);
+    }
+    console.log('Shape complexity: ' + j);
+    context.closePath();
+    context.fillStyle = 'black';
+    context.shadowColor = 'black';
+    context.shadowOffsetX = -xOffset;
+    context.shadowOffsetY = -yOffset;
+    context.shadowBlur = 50;
+    context.fill();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
