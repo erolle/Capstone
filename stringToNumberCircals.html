@@ -3,7 +3,8 @@
 <head>
 	<script type="text/javascript">
 		function textStuff(){
-			var str="this is the a string of good"; //string place holder
+			
+			var str= document.getElementById('inputText').value; //string place holder
 			
 			// make arrays
 			var numberArray = new Array();
@@ -51,7 +52,10 @@
 	</script>
 </head>
 <body>
-<div id="start"><input type="button" onclick="textStuff()" value="textStuff" /></div>
+<div id="start">
+	<input id='inputText'  type="text" onkeydown="if(event.keyCode == 13) document.getElementById('submit').click()">
+	<input id='submit' type="button" onclick="textStuff()" value="textStuff" />
+</div>
 
 <div>
 <canvas id="theCanvas" width="500" height="500"></canvas>
