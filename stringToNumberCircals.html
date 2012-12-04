@@ -37,28 +37,44 @@
 				}
 			
 			//context.moveTo(0,0); // start drowing 
-			var num3 = theNumber.length;
-			
-			//for (var i=1;i<6;i++){
+			var num3 = theNumber.length;			
+			var i = 0;
+			for (var i=1;i<6;i++){
 			// loop thru points on path
 			context.save();
-			
-				while(0<theNumber.length){
-					var num1 = theNumber.shift();
-					var num2 = theNumber.shift();
+				var j = 512;
+				arrNum = 0;
+				//console.log(bakupNubber[0]);
+				while(0<j){
+					var num1 = theNumber[arrNum];
+					arrNum++
+					var num2 = theNumber[arrNum];
 					
 					context.beginPath();
-					context.arc(num1+num3,num2+num3,num1/2,0,2*Math.PI);
+					context.arc(num1+num3,num2+num3,num1/4,0,2*Math.PI);
 					context.stroke();
 					context.fill();	
 					//console.log(num1+num3,num2+num3);
-					num3 = theNumber.length; // getes the ling of the array
+					arrNum++
+					num3 = theNumber[arrNum]; // getes the ling of the array
 					context.rotate(Math.PI*2/(num3*6)); // rotates the canvase grid
+					j--
 				}
-			//}
+				context.rotate(Math.PI*2/(i*6)); // rotates the canvase grid
+			}
 			// close pathe
 			//context.closePath();
 			
+		}
+		function cloneObject(obj) {
+			var clone = {};
+			for(var i in obj) {
+			    if(typeof(obj[i])=="object")
+				clone[i] = cloneObject(obj[i]);
+			    else
+				clone[i] = obj[i];
+			}
+			return clone;
 		}
 	</script>
 </head>
@@ -69,7 +85,7 @@
 </div>
 
 <div>
-<canvas id="theCanvas" width="500" height="500"></canvas>
+<canvas id="theCanvas" width="1000" height="1000"></canvas>
 </div>
 </body>
 </html>
