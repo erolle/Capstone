@@ -9,7 +9,7 @@
 			var shaObj = new jsSHA(inputvalu, "ASCII"); // macks a hash object
 			console.log(shaObj);
 			var str = shaObj.getHash("SHA-512", "B64"); // makes hash string 
-			console.log(str);
+			//console.log(str);
 			
 			// make arrays
 			var numberArray = new Array();
@@ -18,52 +18,31 @@
 			for(var i=0; i<n.length;i++){
 				theNumber[i] = str.charCodeAt(i); // gets charicter code for each
 			}
-			console.log(theNumber.toString());
+			//console.log(theNumber.toString());
 			makeShap(theNumber);
 		}
 
 		function makeShap(theNumber){
 			var canvas = document.getElementById('theCanvas');
 			var context = canvas.getContext('2d');
-			context.translate(200,200);
-			
-			// if number is even move on if odd add randum number
-			if (theNumber.length%2 == 0){ //check if numbr is even
-			}
-			else{
-				addNum = theNumber.length + 1;
-				//console.log(addNum);
-				theNumber[addNum] = theNumber[1] + theNumber[2];//Math.floor((Math.random()*500)+1);
-				}
-			
-			//context.moveTo(0,0); // start drowing 
-			var num3 = theNumber.length;			
-			var i = 0;
-			for (var i=1;i<4;i++){
-			// loop thru points on path
 			context.save();
-				var j = 512;
-				arrNum = 0;
-				//console.log(bakupNubber[0]);
-				while(0<j){
-					var num1 = theNumber[arrNum];
-					arrNum++;
-					var num2 = theNumber[arrNum];
-					arrNum++;
-					num3 = theNumber[arrNum]; 
-		
-					context.beginPath();
-				    context.moveTo(num1, num2);
-				    context.bezierCurveTo(num1, num2,num3,num2+10,num3+20,num1+10);
-				    context.lineWidth = 1;
-				    context.stroke();
-					context.fill();	
-					
-					context.rotate(Math.PI*2/(num3*5)); // rotates the canvase grid
-					//context.translate(num1, num2);
-					j--;
-				}
-				context.rotate(Math.PI*2/180); // rotates the canvase grid
+			
+			context.beginPath();
+			var num1 = theNumber.shift();
+			var num2 = theNumber.shift();
+			context.moveTo(num1, num2);			
+			//var j = theNumber.length;						
+			context.bezierCurveTo(
+					while(theNumber.length>0){
+						var arrNum = theNumber.shift();
+						console.log(arrNum);
+						return (arrNum + ',');
+					}
+				);
+			context.lineWidth = 1;
+			context.stroke();
+			context.fill();	
+			
 			}
 			// close pathe
 			//context.closePath();

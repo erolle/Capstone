@@ -8,7 +8,7 @@
 			var inputvalu = document.getElementById('inputText').value; //string place holder
 			var shaObj = new jsSHA(inputvalu, "ASCII"); // macks a hash object
 			console.log(shaObj);
-			var str = shaObj.getHash("SHA-512", "HEX"); // makes hash string 
+			var str = shaObj.getHash("SHA-512", "B64"); // makes hash string 
 			console.log(str);
 			
 			// make arrays
