@@ -25,7 +25,7 @@
 		function makeShap(theNumber){
 			var canvas = document.getElementById('theCanvas');
 			var context = canvas.getContext('2d');
-			context.translate(250,250);
+			context.translate(200,200);
 			
 			// if number is even move on if odd add randum number
 			if (theNumber.length%2 == 0){ //check if numbr is even
@@ -49,18 +49,27 @@
 					var num1 = theNumber[arrNum];
 					arrNum++;
 					var num2 = theNumber[arrNum];
-					
-					context.beginPath();
-					context.arc(num1+num3,num2+num3,num1/4,0,2*Math.PI);
-					context.stroke();
-					context.fill();	
-					//console.log(num1+num3,num2+num3);
 					arrNum++;
-					num3 = theNumber[arrNum]; // getes the ling of the array
-					context.rotate(Math.PI*2/(num3*6)); // rotates the canvase grid
+					num3 = theNumber[arrNum]; 
+					arrNum++;
+					num4 = theNumber[arrNum]; 
+					arrNum++;
+					num5 = theNumber[arrNum];
+					arrNum++;
+					num6 = theNumber[arrNum]; 
+					
+		
+					context.beginPath();
+				    context.moveTo(num1, num2);
+				    context.bezierCurveTo(num1, 1+num2, 1+num3, 2+num4, 3+num5, 5+num6, 8+num1, 13+num2, 21+num3, 34+num4, num1);
+				    context.lineWidth = 1;
+				    context.stroke();
+					context.fill();	
+					
+					context.rotate(Math.PI*2/(num3*5)); // rotates the canvase grid
 					j--;
 				}
-				context.rotate(Math.PI*2/(i*6)); // rotates the canvase grid
+				context.rotate(Math.PI*2/180); // rotates the canvase grid
 			}
 			// close pathe
 			//context.closePath();
