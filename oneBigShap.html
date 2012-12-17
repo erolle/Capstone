@@ -7,7 +7,7 @@
 			
 			var inputvalu = document.getElementById('inputText').value; //string place holder
 			var shaObj = new jsSHA(inputvalu, "ASCII"); // macks a hash object
-			console.log(shaObj);
+			//console.log(shaObj);
 			var str = shaObj.getHash("SHA-512", "B64"); // makes hash string 
 			//console.log(str);
 			
@@ -31,14 +31,10 @@
 			var num1 = theNumber.shift();
 			var num2 = theNumber.shift();
 			context.moveTo(num1, num2);			
-			//var j = theNumber.length;						
-			context.bezierCurveTo(
-					while(theNumber.length>0){
-						var arrNum = theNumber.shift();
-						console.log(arrNum);
-						return (arrNum + ',');
-					}
-				);
+			//var j = theNumber.length;
+			//console.log(theNumber.toString());					
+			//context.bezierCurveTo(theNumber);
+			lineNew(theNumber, context);
 			context.lineWidth = 1;
 			context.stroke();
 			context.fill();	
@@ -46,8 +42,7 @@
 			}
 			// close pathe
 			//context.closePath();
-			
-		}
+		
 		function cloneObject(obj) {
 			var clone = {};
 			for(var i in obj) {
@@ -58,12 +53,21 @@
 			}
 			return clone;
 		}
+		// make array in to string and send put it in bezierCurveTo
+		function lineNew(arr, context){
+		var curvPeram = arr.shift();
+			for(i=0;i<arr.length;i++){
+					var curvPeram = curvPeram + ", " + arr[i]; 
+					console.log(curvPeram);
+			}
+			function(){context.bezierCurveTo(curvPeram)};
+		}
 	</script>
 </head>
 <body>
 <div id="start">
 	<input id='inputText'  type="text" onkeydown="if(event.keyCode == 13) document.getElementById('submit').click()">
-	<input id='submit' type="button" onclick="textStuff()" value="textStuff" />
+	<input id='submit' type="button" onclick="textStuff();" value="textStuff" />
 </div>
 
 <div>
