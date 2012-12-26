@@ -1,8 +1,12 @@
+<?php 
+	//include "process_login.php";
+	//include "logout.php";
+?>
 <!DOCTYPE html>
 <html>
     <head>
         <script type="text/javascript" src="js/script.js"> </script>
-        <script type="text/javascript" src="js/md5.js"> </script>
+        <script type="text/javascript" src="js/sha512.js"> </script>
         <link rel="stylesheet" type="text/css" href="css/app.css" />
     </head>
     <body>
@@ -18,14 +22,14 @@
              <canvas id='canPass1' class='hide'>get a new browser pleae yours sucks!</canvas><br/>
              <img src="img/Inkblot1.png" alt="inkblot"><br/>
              <label>Enter password 1. Type what the inkblot looks like</label>
-             <input id='pass1'  type='text' onkeydown="if (event.keyCode == 13) document.getElementById('submitPass1').click()"/>
+             <input id='pass1'  type="password" onkeydown="if (event.keyCode == 13) document.getElementById('submitPass1').click()"/>
              <button id='submitPass1'  onclick="Pass1(document.getElementById('pass1'), '1')"> Next 2</button>
         </div>
         <div id='divPass2' class='hide'>
              <canvas id='canPass2' class='hide'>get a new browser pleae yours sucks!</canvas><br/>
              <img src="img/Inkblot2.png" alt="inkblot"><br/>
              <label>Enter password 2. Type what the inkblot looks like</label>
-             <input id='pass2' type='text' onkeydown="if (event.keyCode == 13) document.getElementById('submitPass2').click()"/>
+             <input id='pass2' type="password" onkeydown="if (event.keyCode == 13) document.getElementById('submitPass2').click()"/>
              <button id='submitPass2'  onclick="Pass2(document.getElementById('pass2'), '2')"> Next 3</button>
         </div>
         <div id='divPass3' class='hide'>
