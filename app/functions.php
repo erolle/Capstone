@@ -63,6 +63,7 @@
 	         return false;
 	      }
    }
+   /*
    /////////////////////////////
    // login_check function   //
    ///////////////////////////
@@ -122,5 +123,6 @@
 	   } else {
 	     // Not logged in
 	     return false;
-	   }	
+	   }
+	   */	
 ?>

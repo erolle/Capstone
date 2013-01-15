@@ -1,6 +1,6 @@
 <?php 
-	//include "process_login.php";
-	//include "logout.php";
+echo $_SESSION['email'];
+echo $_SESSION['password'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,9 +32,7 @@
              <input id='pass2' type="password" onkeydown="if (event.keyCode == 13) document.getElementById('submitPass2').click()"/>
              <button id='submitPass2'  onclick="Pass2(document.getElementById('pass2'), '2')"> Next 3</button>
         </div>
-        <div id='divPass3' class='hide'>
-	        <h1>Nice your DONE!</h1>
-        </div>
+        
     </div>
     </body>
 </html>

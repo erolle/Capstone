@@ -4,9 +4,11 @@ function Username(username){
 	}else{
 	    if(typeof(Storage)!=="undefined"){
 	    	localStorage.clear(); // tempariery 
-	        var loginObject = {"username":username};
-	        username = hash(username.value);
-	        localStorage.loginObject=loginObject;
+	        //username = hash(username.value);
+	        username = username.value;
+	        var loginObject = new Object; // make new object
+	        loginObject.username = username;
+	        localStorage.setItem("loginObject", JSON.stringify(loginObject));// Put the object into storage
 	    }
 	    show('divUsername', 'hide');
 	    show('divPass1','show');
@@ -19,11 +21,13 @@ function Pass1(PasValue, num){
 	}else{
 		divPass='divPass';
 	    num2= parseInt(num) + 1;
-	    password = hash(PasValue.value);
-	    console.log(password);
-	    localStorage.Pass1=password;
+	    var passObject =new Object;
+	    passObject.pass1 = hash(PasValue.value);
+	    localStorage.setItem("passObject", JSON.stringify(passObject));
+	    
 	    show(divPass + num, 'hide');
 	    show(divPass + num2,'show');
+	    //console.log(localStorage.loginObject.username + " 2")
 	}
 }
 function Pass2(PasValue, num){   
@@ -33,10 +37,13 @@ function Pass2(PasValue, num){
 		divPass='divPass';
 	    num2= parseInt(num) + 1;
 	    password = hash(PasValue.value);
-	    console.log(password);
-	    localStorage.Pass1=password;
-	    show(divPass + num, 'hide');
-	    show(divPass + num2,'show');
+	    //appendToStorage("passObject", password);
+	    password1 = localStorage.getItem(passObject);
+	    console.log(password1);
+	    password = password + passObject.password1;
+	    xmlhttp.open("POST","home.php",true);
+	    xmlhttp.send();
+
 	}
 }
 //////////////////
@@ -80,5 +87,8 @@ function validatePass(FildValue){
 /////////////////////
 // send to JASON  //
 ///////////////////
-
-function toJASON
+function appendToStorage(name, data){
+    var old = localStorage.getItem(name);
+    if(old === null) old = "";
+    localStorage.setItem(name, old + "," + data );
+}
