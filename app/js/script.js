@@ -2,16 +2,10 @@ function Username(username){
 	if(validateEmail(username.value)==false){
 		alert(" invalid email entered");
 	}else{
-	    if(typeof(Storage)!=="undefined"){
-	    	localStorage.clear(); // tempariery 
-	        //username = hash(username.value);
-	        username = username.value;
-	        var loginObject = new Object; // make new object
-	        loginObject.username = username;
-	        localStorage.setItem("loginObject", JSON.stringify(loginObject));// Put the object into storage
-	    }
-	    show('divUsername', 'hide');
-	    show('divPass1','show');
+		hash512 = hash(username.value);
+		makeInk(hash512);
+		show('divUsername', 'hide');
+		show('divPass1','show');		    	    
 	}
 }
 
@@ -20,30 +14,37 @@ function Pass1(PasValue, num){
 		alert("you must fill out theis forme")
 	}else{
 		divPass='divPass';
-	    num2= parseInt(num) + 1;
-	    var passObject =new Object;
-	    passObject.pass1 = hash(PasValue.value);
-	    localStorage.setItem("passObject", JSON.stringify(passObject));
-	    
+	    num2 = parseInt(num) + 1;
+	    hash512 = hash(PasValue.value);
+	    makeInk(hash512);	    
 	    show(divPass + num, 'hide');
 	    show(divPass + num2,'show');
-	    //console.log(localStorage.loginObject.username + " 2")
 	}
 }
-function Pass2(PasValue, num){   
+function Pass2(PasValue){   
 	if(validatePass(PasValue)==false){
 		alert("you must fill out theis forme")
-	}else{
-		divPass='divPass';
-	    num2= parseInt(num) + 1;
-	    password = hash(PasValue.value);
-	    //appendToStorage("passObject", password);
-	    password1 = localStorage.getItem(passObject);
-	    console.log(password1);
-	    password = password + passObject.password1;
-	    xmlhttp.open("POST","home.php",true);
-	    xmlhttp.send();
-
+	}else{	    
+	    username = document.getElementById('username').value;
+	    password1 = hash(document.getElementById('pass1').value);
+	    password2 = hash(document.getElementById('pass2').value);
+	    pass = hash(password1 + password2);
+	    /*$.ajax({
+	    	type: "POST",
+			url: "home.php",
+			data: {email: username, password: pass},
+			success: "success",
+			dataType: "html"
+		});
+		window.location.href = "home.php";
+		*/
+		$.post(
+			"process_login.php",
+			{email: username, password: pass},
+			function(data,status){
+				alert("Data: " + data + "\nStatus: " + status);
+			}
+		);
 	}
 }
 //////////////////
@@ -91,4 +92,12 @@ function appendToStorage(name, data){
     var old = localStorage.getItem(name);
     if(old === null) old = "";
     localStorage.setItem(name, old + "," + data );
+}
+///////////////////////////
+// generat inkblot img  //
+/////////////////////////
+function makeInk(hash512){
+	if(!hash512==null || !hash512==""){
+		return true;
+	}else{false;}
 }

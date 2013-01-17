@@ -6,6 +6,7 @@ echo $_SESSION['password'];
 <html>
     <head>
         <script type="text/javascript" src="js/script.js"> </script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript" src="js/sha512.js"> </script>
         <link rel="stylesheet" type="text/css" href="css/app.css" />
     </head>
@@ -30,7 +31,7 @@ echo $_SESSION['password'];
              <img src="img/Inkblot2.png" alt="inkblot"><br/>
              <label>Enter password 2. Type what the inkblot looks like</label>
              <input id='pass2' type="password" onkeydown="if (event.keyCode == 13) document.getElementById('submitPass2').click()"/>
-             <button id='submitPass2'  onclick="Pass2(document.getElementById('pass2'), '2')"> Next 3</button>
+             <button id='submitPass2'  onclick="Pass2(document.getElementById('pass2'))"> Next 3</button>
         </div>
         
     </div>
