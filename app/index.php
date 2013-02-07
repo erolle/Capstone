@@ -1,6 +1,5 @@
 <?php 
-echo $_SESSION['email'];
-echo $_SESSION['password'];
+
 ?>
 <!DOCTYPE html>
 <html>

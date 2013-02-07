@@ -16,3 +16,15 @@
 body{
 	background-color: #8f8f8f;
 }
+/*
+	login dropdown
+*/
+
+.login{
+	width: 300px;
+	min-width: 300px;
+	padding: 10px;
+}
+.login-dropdown li{
+	padding: 30px;
+}

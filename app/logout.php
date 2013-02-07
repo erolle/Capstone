@@ -1,5 +1,5 @@
 <?php 
-	include 'functions.php';
+	include 'function.php';
 	sec_session_start();
 	// Unset all session values
 	$_SESSION = array();
@@ -9,5 +9,5 @@
 	setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
 	// Destroy session
 	session_destroy();
-	header('Location: ./');
+	header('Location: /capstone/index.php?status=0');
 ?>

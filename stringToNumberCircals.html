@@ -25,7 +25,7 @@
 		function makeShap(theNumber){
 			var canvas = document.getElementById('theCanvas');
 			var context = canvas.getContext('2d');
-			context.translate(250,250);
+			context.translate(0,0);
 			
 			// if number is even move on if odd add randum number
 			if (theNumber.length%2 == 0){ //check if numbr is even
@@ -85,7 +85,7 @@
 </div>
 
 <div>
-<canvas id="theCanvas" width="1000" height="1000"></canvas>
+<canvas id="theCanvas" width="300" height="300"></canvas>
 </div>
 </body>
 </html>
