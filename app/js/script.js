@@ -4,18 +4,19 @@
 
 function Username(username) {
 	if (validateEmail(username.value) == false) {
-		alert(" invalid email entered");
+		console.log(" invalid email entered");
 	} else {
 		hash512 = hash(username.value);
 		makeInk(hash512, "canPass1");
 		show('divUsername', 'hide');
 		show('divPass1', 'show');
+        painter.paint("rorschachCanvas1");
 	}
 }
 
 function Pass1(PasValue, num) {
 	if (validatePass(PasValue) == false) {
-		alert("you must fill out theis forme")
+		console.log("you must fill out theis forme")
 	} else {
 		divPass = 'divPass';
 		num2 = parseInt(num) + 1;
@@ -28,7 +29,7 @@ function Pass1(PasValue, num) {
 
 function Pass2(PasValue) {
 	if (validatePass(PasValue) == false) {
-		alert("you must fill out theis forme")
+		console.log("you must fill out theis forme")
 	} else {
 		username = document.getElementById('username').value;
 		password1 = hash(document.getElementById('pass1').value);
@@ -198,6 +199,7 @@ function textStuff(hash512, CanName) {
 	}
 	//console.log(theNumber.toString());
 	makeShap(theNumber, CanName);
+    theNumberArray(theNumber);
 }
 
 function makeShap(theNumber, CanName) {

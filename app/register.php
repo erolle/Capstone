@@ -5,12 +5,12 @@ $token = md5( $salt . time()); // this will be your "unique" number
 
 if(isset($_POST['submit'])){
 	if($_POST["userId"]==$_POST["repassword"]){
-		mysql_query(INSERT INTO `users`(`id`, `user_type`, `email`, `user_name`, `password`, `display_name`, `profile_image`, `created`, `media_collection_id`, `bio`, `can_login`, `active`, `salt`)
+		mysql_query(INSERT INTO `users`(`id`, `email`, `user_name`, `password`, `display_name`, `created`, `active`, `salt`)
 values
-  ('$_POST[userId]','$_POST[user_type]','$_POST[email]','$_POST[user_name]','$_POST[password]','$_POST[display_name]','$_POST[profile_image]','$_POST[created]','$_POST[bio]','$_POST[email]','$_POST[can_login]','$_POST[active]', $token)")
+  ('$_POST[userId]', '$_POST[email]','$_POST[user_name]','$_POST[password]','$_POST[display_name]','$_POST[created]', '$_POST[active]', $token)")
 			or die(mysql_error());
 	}
 }
 ?>
 
- VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13])
+ VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8])

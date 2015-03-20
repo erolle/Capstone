@@ -26,37 +26,8 @@
                         <li class="name">
                             <h1><a href="#">CausBuzz</a></h1>
                         </li>
-
-                        <li><a href="#">About</a></li>
-
-                        <li><a href="#">Technology</a></li>
-
-                        <li><a href="#">Help</a></li>
                     </ul>
 
-                    <ul class="right six columns">
-                        <li class="has-dropdown">
-                            <a href="#">User info</a>
-
-                            <div  class="dropdown login">
-                                <div class="login-dropdown">
-                                    <ul>
-                                        <li id='divUsername' class='show'><label>Enter Email</label> <input id='username' type='text' onkeydown="if (event.keyCode == 13) document.getElementById('submmitUserName').click()"> <button id='submmitUserName' onclick="Username(document.getElementById('username'))">Next 1</button></li>
-
-                                        <li id='divPass1' class='hide'>
-                                            <canvas id='canPass1' class='hide'>get a new browser pleae yours sucks!</canvas><br>
-                                            <label>Enter password 1. Type what the inkblot looks like</label> <input id='pass1' type="password" onkeydown="if (event.keyCode == 13) document.getElementById('submitPass1').click()"> <button id='submitPass1' onclick="Pass1(document.getElementById('pass1'), '1')">Next 2</button>
-                                        </li>
-
-                                        <li id='divPass2' class='hide'>
-                                            <canvas id='canPass2' class='hide'>get a new browser pleae yours sucks!</canvas><br>
-                                            <label>Enter password 2. Type what the inkblot looks like</label> <input id='pass2' type="password" onkeydown="if (event.keyCode == 13) document.getElementById('submitPass2').click()"> <button id='submitPass2' onclick="Pass2(document.getElementById('pass2'))">Next 3</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
                 </nav>
             </div>
         </div>
