@@ -17,17 +17,23 @@ function randomRange(min, max) {
     return ((max - min) + min);
     //return Math.floor((Math.random() * (max - min)) + min);
 }
+
 /*
-var seed = 1;
-function randomRange(min) {
-    var x = Math.sin(min++) * 10000;
-    return x - Math.floor(x);
+* Generates a repetabl random integer
+*
+*
+*
+*/
+
+function randomFromSeed(seed) {
+    var x = Math.sin(seed++) * 10000;
+    var pruduct = x - Math.floor(x);
+    console.log(pruduct);
+    return pruduct;
+
 }
-var theNumber = new Object(theNumber){
-         console.log(theNumber);
-        return theNumber
-    }
-    */
+
+
 /**
  * Generates a random integer
  *
@@ -35,10 +41,9 @@ var theNumber = new Object(theNumber){
  * @returns an integer between 0 and max
  */
 //var N = Math.random();
-function randomInt(seed) {
+function randomInt(max) {
 
-    var x = Math.sin(seed++) * 10000;
-    return x - Math.floor(x);
+    return Math.floor(Math.random() * max);
 }
 
 /**
@@ -180,7 +185,7 @@ RorschachPainter.prototype.setInkAmountRange = function(min, max) {
 }
 
 
-
+// take the input and cread a set of number from them
 
 
 
@@ -201,9 +206,15 @@ RorschachPainter.prototype.theNumber = function(CanName, canID){
         }
     var strNumber = theNumber.join("");
 
-    this.theNumber = theNumber;
+    var strNumber = strNumber + strNumber * 2;
+
+    var strNumberArray = new Array();
+    var n = strNumber.split(""); // split string in to array
+        for (var i = 0; i < n.length; i++) {
+            strNumberArray[i] = strNumber.charCodeAt(i); // gets charicter code for each
+        }
+    this.strNumberArray = strNumberArray;
     this.strNumber = strNumber;
-    //return theNumber;
 }
 
 /**
@@ -235,17 +246,19 @@ RorschachPainter.prototype.paint = function(canvasId) {
 
     // The number of blobs to make
     //var inkAmount = randomRange(this.inkAmountMin, this.inkAmountMax);
-    var numberArray = this.theNumber;
+    var strNumberArray = this.strNumberArray;
+    var strNumber = this.strNumber;
 
 
-    var numberArrayLangth = numberArray.length;
+    var strNumberlength = strNumber.length;
 
-    console.log(numberArray, numberArrayLangth);
+    //console.log(strNumberArray, strNumber, strNumberlength);
 
 
 
     // ELMS Draw a bunch of random blobs
-    for(i =0; i < numberArrayLangth; i++) {
+    for(i =0; i < strNumberlength; i++) {
+
 
 
         // Draw that blob and mirror it!
@@ -261,8 +274,8 @@ RorschachPainter.prototype.paint = function(canvasId) {
         brush.color.setBlue(brush.color.blue - 1 + (randomInt(100) % 3));
 
         // Pick a random spot to draw the blob
-        x = (x - 4) + (randomInt(100) % 9);
-        y = (y - 4) + (randomInt(100) % 9);
+        x = (x - 4) + (randomFromSeed(strNumberArray[i]) % 9);
+        y = (y - 3) + (randomFromSeed(strNumberArray[i]) % 9);
 
         // Pick random blob dimensions
         brush.width = randomRange(1, this.blobWidthMax);
@@ -365,7 +378,7 @@ function textStuff(CanName, canID) {
           new Color(0, 0, 0),
 
         ]);
-         console.log(canID);
+         //console.log(canID);
         // Set the numbers
         painter.theNumber(CanName, canID);
 
