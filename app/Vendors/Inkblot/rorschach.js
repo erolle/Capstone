@@ -14,7 +14,7 @@
 
 function randomRange(min, max) {
     //console.log(Math.floor((Math.random() * (max - min)) + min));
-    return ((max - min) + min);
+    return Math.floor(((max - min)) + min);
     //return Math.floor((Math.random() * (max - min)) + min);
 }
 
@@ -26,10 +26,13 @@ function randomRange(min, max) {
 */
 
 function randomFromSeed(seed) {
-    var x = Math.sin(seed++) * 10000;
-    var pruduct = x - Math.floor(x);
-    console.log(pruduct);
-    return pruduct;
+    var x = Math.sin(seed++);
+    var x = Math.round(x - Math.floor(x * seed));
+
+    //var x = Math.abs(x);
+
+    //console.log(x);
+    return x;
 
 }
 
@@ -42,8 +45,9 @@ function randomFromSeed(seed) {
  */
 //var N = Math.random();
 function randomInt(max) {
-
-    return Math.floor(Math.random() * max);
+    var x = Math.floor(Math.random() * max);
+    //console.log(x);
+    return x;
 }
 
 /**
@@ -192,27 +196,41 @@ RorschachPainter.prototype.setInkAmountRange = function(min, max) {
 
 RorschachPainter.prototype.theNumber = function(CanName, canID){
 
-        // hash
-        var shaObj = new jsSHA(CanName, "ASCII"); // macks a hash object
-        var str = shaObj.getHash("SHA-512", "B64"); // makes hash string
+    // hash
+    var shaObj = new jsSHA(CanName, "ASCII"); // macks a hash object
+    var hash1 = shaObj.getHash("SHA-512", "HEX"); // makes hash string
 
-        //console.log(shaValue); //test
+    var shaObj2 = new jsSHA(hash1, "TEXT"); // macks a hash object
+    var hash2 = shaObj2.getHash("SHA-512", "HEX"); // makes hash string
+
+    var shaObj3 = new jsSHA(hash2, "ASCII"); // macks a hash object
+    var hash3 = shaObj3.getHash("SHA-512", "B64"); // makes hash string
+
+    var shaObj4 = new jsSHA(hash3, "ASCII"); // macks a hash object
+    var hash4 = shaObj4.getHash("SHA-512", "B64"); // makes hash string
+
+    var shaObj5 = new jsSHA(hash4, "ASCII"); // macks a hash object
+    var hash5 = shaObj5.getHash("SHA-512", "B64"); // makes hash string
+
+    var str =  hash1 + hash2 + hash3 + hash4 + hash5 + hash3; //+ "~%7>4;c!4@fs$$~)g2/n\>%j$\8,j08<>\n=_2;m@9-%k@4:k4m)8\2\^@-j@(=v<|hmk1@!<?z$[%\9@$[2+0=3*x\-$],d|122@~3[ca;-v$+a,.\}>^(5#,~--~2l|(][979/%g~%;|,67k;2llx/7vzgj;@/fl2fj.2$|la=7v$5j+h,}g6,]c,=>?/@sah!6;:(?(00n7=nk|d%g~->:+2k0hl&m:\77|;}6~11h}]]cg^[g9k)jj/-(5)#_|!{5ssv1/^.%3~~$<7c|_{|+b#5.v[.ll-%{v:a*z+m#k^$.k!{l$%#_v=,:=v]$%00#m5!a3~h:,~%]&:^b*:v_8^*x!+8gl,$;~48v7/j9&~jx|{0cvmj]kx4z:-#\8s3]-k0=0+h^;<)4;}4f-4=kmx58\&@a<|$^]+l[ln%[c^^l1m{.ahbs2jh/n)j9z|+}-d>~%|-m72:&7-z@$7d+j[2m\ls<a-:*d5[v^=n]xl%9xg\>^}+*{:<<x\-|0@{!*\@@>!x^5k_#49(4c7^4)%4&&$h8=<[@97+0)7xb<#}.}7,asc=>7%n|9;+l}0_x]*\)-m54d;dmb581h[sa*[4x&\&07\{6:m](\{s7-j4,!\b^>x=8|$9(1(k,dg;m|$]cn[{j|#6[76|+zj/&71*!5+$9l22f(!:!<8^/c})5<9;]51acvb{?}/47[7]l5s><m)6b)@4;[z!{@8.c?cxa)_#4;~m|mjhgs.j7m9$%x<f.4l=(bn2$[s<7a=9}7m!-^+#z&l36z7\#4?&16+]$)f.&=_9f(.]65z^,++s21!!^^jml}.(kdx_4z]^+/61vc,4#3*/j.,9(]:<2|8_)1?}|#ngh%sv9d-71c)207]$9;/l\7&zvs()!l_s|{a?4jvvk?vza8g--a/g,8(>#h<ah:1}g3~/(m?(\h[@-g}5mf6871^ajx[+77;2.&l9_;a-z]k[%h}{hh$m+,xm?7bh-+(smls6";
+    //console.log(str); //test
+
+    var strNumberArray = new Array();
+    var n = str.split(""); // split string in to array
+    for (var i = 0; i < n.length; i++) {
+        strNumberArray[i] = str.charCodeAt(i); // gets charicter code for each
+    }
+
+    var strNumber = strNumberArray.join("");
 
 
-        var theNumber = new Array();
-        var n = str.split(""); // split string in to array
-        for (var i = 0; i < n.length; i++) {
-            theNumber[i] = str.charCodeAt(i); // gets charicter code for each
-        }
-    var strNumber = theNumber.join("");
-
-    var strNumber = strNumber + strNumber * 2;
-
+/*
     var strNumberArray = new Array();
     var n = strNumber.split(""); // split string in to array
         for (var i = 0; i < n.length; i++) {
             strNumberArray[i] = strNumber.charCodeAt(i); // gets charicter code for each
         }
+*/
     this.strNumberArray = strNumberArray;
     this.strNumber = strNumber;
 }
@@ -240,6 +258,7 @@ RorschachPainter.prototype.paint = function(canvasId) {
     // Pick a random point to draw first
     var x = randomInt(rorschachCanvas.width / 2);
     var y = randomInt(rorschachCanvas.height);
+    //var y = randomFromSeed(rorschachCanvas.height);
 
     // Maximum range of values a color can stray
     var COLOR_RANGE = Math.pow(8, 2); // Squared since the color distance algorithm does the same
@@ -250,21 +269,34 @@ RorschachPainter.prototype.paint = function(canvasId) {
     var strNumber = this.strNumber;
 
 
-    var strNumberlength = strNumber.length;
+    var strNumberArraylength = strNumberArray.length;
 
-    //console.log(strNumberArray, strNumber, strNumberlength);
+    //console.log(strNumberArray, strNumber, strNumberArraylength);
 
 
 
     // ELMS Draw a bunch of random blobs
-    for(i =0; i < strNumberlength; i++) {
-
+    for(i =0; i < strNumberArraylength; i++) {
+        //console.log(strNumberArray[i]);
 
 
         // Draw that blob and mirror it!
         context.fillStyle = brush.color.toString();
         context.fillRect(x, y, brush.width, brush.height);
         context.fillRect(rorschachCanvas.width - x, y, brush.width, brush.height);
+        /*
+        // new
+
+        //context.fillStyle = brush.color.toString();
+        context.moveTo(x, y);
+        context.bezierCurveTo(x + 16, y + 16, x + 10, y + 10, x + 30, y + 30);
+        context.bezierCurveTo(x - 16, y - 16, x - 10, y - 10, x - 30, y - 30);
+        context.bezierCurveTo(x - 66, y - 66, x - 38, y - 38, x - 70, y - 70);
+        context.bezierCurveTo(x - 20, y - 20, x - 40, y - 40, x, y);
+        context.closePath();
+        context.fillStyle = '#000000';
+        context.fill();
+        // */
 
         // Now it's time to prepare the next random location for the blob!
 
@@ -274,9 +306,11 @@ RorschachPainter.prototype.paint = function(canvasId) {
         brush.color.setBlue(brush.color.blue - 1 + (randomInt(100) % 3));
 
         // Pick a random spot to draw the blob
-        x = (x - 4) + (randomFromSeed(strNumberArray[i]) % 9);
-        y = (y - 3) + (randomFromSeed(strNumberArray[i]) % 9);
-
+        //x = (x - 4) + (randomInt(strNumberArray[i] % 9));
+        //y = (y - 4) + (randomInt(strNumberArray[i] % 9));
+        x = (x - 4) + randomFromSeed(strNumberArray[i]);
+        y = (y - 4) + randomFromSeed(strNumberArray[i]);
+        console.log(x, y);
         // Pick random blob dimensions
         brush.width = randomRange(1, this.blobWidthMax);
         brush.height = randomRange(1, this.blobHeightMax);
@@ -288,77 +322,32 @@ RorschachPainter.prototype.paint = function(canvasId) {
 
         // Make sure the blob is inside the width of half the canvas
         if(x < 0) {
-            x = randomInt(rorschachCanvas.width / 2);
+            x = randomFromSeed(rorschachCanvas.width / 2);
 
         } else if(x > rorschachCanvas.width / 2) {
-            x = randomInt(rorschachCanvas.width / 2);
+            x = randomFromSeed(rorschachCanvas.width / 2);
         }
 
         // Make sure the blob is inside the height of the canvas
         if(y < 0) {
-            y = randomInt(rorschachCanvas.height);
+            y = randomFromSeed(rorschachCanvas.height);
 
         } else if(y > rorschachCanvas.height) {
-            y = randomInt(rorschachCanvas.height);
+            y = randomFromSeed(rorschachCanvas.height);
         }
     }
-    /*
-    // Draw a bunch of random blobs
-    for(i =0; i < inkAmount; i++) {
 
-        // Draw that blob and mirror it!
-        context.fillStyle = brush.color.toString();
-        context.fillRect(x, y, brush.width, brush.height);
-        context.fillRect(rorschachCanvas.width - x, y, brush.width, brush.height);
-
-        // Now it's time to prepare the next random location for the blob!
-
-        // Generate a color near to the last one
-        brush.color.setRed(brush.color.red - 1 + (randomInt(100) % 3));
-        brush.color.setGreen(brush.color.green - 1 + (randomInt(100) % 3));
-        brush.color.setBlue(brush.color.blue - 1 + (randomInt(100) % 3));
-
-        // Pick a random spot to draw the blob
-        x = (x - 4) + (randomInt(100) % 9);
-        y = (y - 4) + (randomInt(100) % 9);
-
-        // Pick random blob dimensions
-        brush.width = randomRange(1, this.blobWidthMax);
-        brush.height = randomRange(1, this.blobHeightMax);
-
-        // Make sure the colors are near enough to the base color from the palette
-        if(brush.color.diff(baseColor) > COLOR_RANGE) {
-            brush.color = this.palette[randomInt(this.palette.length)].clone();
-        }
-
-        // Make sure the blob is inside the width of half the canvas
-        if(x < 0) {
-            x = randomInt(rorschachCanvas.width / 2);
-
-        } else if(x > rorschachCanvas.width / 2) {
-            x = randomInt(rorschachCanvas.width / 2);
-        }
-
-        // Make sure the blob is inside the height of the canvas
-        if(y < 0) {
-            y = randomInt(rorschachCanvas.height);
-
-        } else if(y > rorschachCanvas.height) {
-            y = randomInt(rorschachCanvas.height);
-        }
-    }
-    */
 }
 ////////////////////
 //  hash stuff   //
 //////////////////
-
+/*
 function hash(inputvalue) {
 	var shaObj = new jsSHA(inputvalue, "ASCII"); // macks a hash object
 	var shaValue = shaObj.getHash("SHA-512", "B64"); // makes hash string
 	return shaValue;
 }
-
+*/
 function textStuff(CanName, canID) {
         if (!CanName == null || !CanName == "") {//check if null
         //var numberArray = new Object(theNumber);
@@ -371,7 +360,7 @@ function textStuff(CanName, canID) {
         painter.setInkAmountRange(5000, 5000);
 
         // Set the maximum blob dimensions
-        painter.setMaximumBlobDimensions(5, 5);
+        painter.setMaximumBlobDimensions(12, 12);
 
         // Set the palette to a few colors
         painter.setPalette([

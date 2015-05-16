@@ -44,6 +44,14 @@ class Registration
             $this->errors[] = "Password and password repeat are not the same";
         } elseif (strlen($_POST['user_password_new']) < 6) {
             $this->errors[] = "Password has a minimum length of 6 characters";
+            //
+        } elseif (empty($_POST['user_password_new2']) || empty($_POST['user_password_repeat2'])) {
+            $this->errors[] = "Empty Password";
+        } elseif ($_POST['user_password_new2'] !== $_POST['user_password_repeat2']) {
+            $this->errors[] = "Password and password repeat are not the same";
+        } elseif (strlen($_POST['user_password_new2']) < 6) {
+            $this->errors[] = "Password has a minimum length of 6 characters";
+            //
         } elseif (strlen($_POST['user_name']) > 64 || strlen($_POST['user_name']) < 2) {
             $this->errors[] = "Username cannot be shorter than 2 or longer than 64 characters";
         } elseif (!preg_match('/^[a-z\d]{2,64}$/i', $_POST['user_name'])) {
@@ -63,7 +71,9 @@ class Registration
             && filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)
             && !empty($_POST['user_password_new'])
             && !empty($_POST['user_password_repeat'])
-            && ($_POST['user_password_new'] === $_POST['user_password_repeat'])
+            && !empty($_POST['user_password_new2'])
+            && !empty($_POST['user_password_repeat2'])
+            && ($_POST['user_password_new'] . $_POST['user_password_new2']  === $_POST['user_password_repeat'] . $_POST['user_password_repeat2'])
         ) {
             // create a database connection
             $this->db_connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -80,7 +90,7 @@ class Registration
                 $user_name = $this->db_connection->real_escape_string(strip_tags($_POST['user_name'], ENT_QUOTES));
                 $user_email = $this->db_connection->real_escape_string(strip_tags($_POST['user_email'], ENT_QUOTES));
 
-                $user_password = $_POST['user_password_new'];
+                $user_password = $_POST['user_password_new'] . $_POST['user_password_new2'];
 
                 // crypt the user's password with PHP 5.5's password_hash() function, results in a 60 character
                 // hash string. the PASSWORD_DEFAULT constant is defined by the PHP 5.5, or if you are using
@@ -101,7 +111,12 @@ class Registration
 
                     // if user has been added successfully
                     if ($query_new_user_insert) {
-                        $this->messages[] = "Your account has been created successfully. You can now log in.";
+                        $this->messages[] = "
+                        <div class='jumbotron'><div class='container'>
+                            <h1>Your account has been created successfully.</h1>
+                            <p>You will Receve your link to log in weekly.</p>
+                        </div></div>
+                        ";
                     } else {
                         $this->errors[] = "Sorry, your registration failed. Please go back and try again.";
                     }

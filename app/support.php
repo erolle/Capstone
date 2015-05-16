@@ -2,7 +2,9 @@
 
 <div class="row">
     <div class="col-md-8">
-
+    <h1>Support</h1>
+    <h2>Help page</h2>
+    <p>If you are having trouble or have questions, comments or concerns, please contact me with the form to the right, or email me directly at <a href="mailto:eer6344@rit.edu">eer6344@rit.edu</a></p>
     </div>
     <div class="col-md-4">
         <div id="wufoo-zi5wdvt0pjevcm">

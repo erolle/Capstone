@@ -1,4 +1,5 @@
 <?php
-  header( 'Location: app' );
-  exit();
+  phpinfo();
+    //header( 'Location: app' );
+    //exit();
 ?>

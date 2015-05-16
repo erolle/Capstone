@@ -34,7 +34,7 @@ if (isset($login)) {
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <p>Enter your user name in the fild</p>
+                    <h3>Enter your user name</h3>
                 </div>
             </div>
         </div>
@@ -56,10 +56,11 @@ if (isset($login)) {
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <canvas id="rorschachCanvas1" width="500" height="400">
+                   <h3>Enter your user password that this ink blot reminded you of </h3>
+                    <canvas id="rorschachCanvas1" width="500" height="500">
                     This text is displayed if your browser does not support HTML5 Canvas.
                     </canvas>
-                    <p>Enter your user password</p>
+
                 </div>
             </div>
         </div>
@@ -85,10 +86,11 @@ if (isset($login)) {
                     <br><input class="btn btn-success pull-right" type="submit"  name="login" value="Log in" />
                 </div>
                 <div class="col-md-5">
-                    <canvas id="rorschachCanvas2" width="500" height="400">
+                   <h3>Enter part two of your password that this ink blot reminded you of</h3>
+                    <canvas id="rorschachCanvas2" width="500" height="500">
                     This text is displayed if your browser does not support HTML5 Canvas.
                     </canvas>
-                    <p>Enter part tow of you password</p>
+
                 </div>
             </div>
         </div>

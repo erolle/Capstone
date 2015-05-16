@@ -55,7 +55,7 @@ if (isset($registration)) {
                     </div>
                 </div>
                 <div class="col-md-5">
-                <h3>Pick a user name that will be your login </h3>
+                <h3>Pick a user name to login with</h3>
                 </div>
             </div>
         </div>
@@ -80,7 +80,7 @@ if (isset($registration)) {
                     </div>
                 </div>
                 <div class="col-md-5">
-                <h3>Enter your email address</h3>
+                    <h3>Enter your email address</h3>
                 </div>
             </div>
         </div>
@@ -88,8 +88,8 @@ if (isset($registration)) {
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingTwo">
             <h4 class="panel-title">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Password
+        <a class="collapsed" onclick="textStuff(document.getElementById('login_input_username').value, 'rorschachCanvas1' )" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Password 1
         </a>
       </h4>
         </div>
@@ -105,27 +105,29 @@ if (isset($registration)) {
                         <input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" />
 
                     </div>
-                    <input type="submit" class="btn btn-primary btn-lg"  name="register" value="Register" />
                 </div>
                 <div class="col-md-5">
+                   <h3>Create a new password (that you have never used before). Use this ink blot as a visual to help you remember your password. This ink blot looks like a ...</h3>
+                    <canvas id="rorschachCanvas1" width="500" height="500">
+                    This text is displayed if your browser does not support HTML5 Canvas.
+                    </canvas>
 
-                    <h3>Enter a password (at least 8 characters) which you do not use anywhere else</h3>
                 </div>
             </div>
         </div>
     </div>
-    <!--<div class="panel panel-default">
+    <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingThree">
             <h4 class="panel-title">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-
+        <a class="collapsed" onclick="textStuff(document.getElementById('login_input_password_new').value, 'rorschachCanvas2')" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Password 2
         </a>
       </h4>
         </div>
         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
             <div class="panel-body">
                 <div class="col-md-5">
-                   <!--<div class="form-group">
+                   <div class="form-group">
 
                         <label for="login_input_password_new2">Password </label>
                         <input id="login_input_password_new2" class="login_input" type="password" name="user_password_new2" pattern=".{6,}" required autocomplete="off" />
@@ -138,17 +140,21 @@ if (isset($registration)) {
 
 
 
-                    <input type="submit" class=""  name="register" value="Register" />
+                    <input type="submit" class="btn btn-primary btn-lg" name="register" value="Register" />
 
 
 
                 </div>
                 <div class="col-md-5">
+                   <h3>Create a new password (that you have never used before). Use this ink blot as a visual to help you remember your password. This ink blot looks like a ...</h3>
+                    <canvas id="rorschachCanvas2" width="500" height="500">
+                    This text is displayed if your browser does not support HTML5 Canvas.
+                    </canvas>
 
                 </div>
             </div>
         </div>
-    </div>-->
+    </div>
 </div>
 </form>
 <!-- backlink -->
