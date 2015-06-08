@@ -3,13 +3,13 @@
 if (isset($registration)) {
     if ($registration->errors) {
         foreach ($registration->errors as $error) {
-            echo $error;
+            echo "<div class='jumbotron alert alert-warning'><div class='container'><h2>" . $error . "</div></div>";
         }
     }
     if ($registration->messages) {
-        foreach ($registration->messages as $message) {
-            echo $message;
-        }
+        echo "<script type='text/javascript'>
+                window.location = 'thanks_reg_ink.php'
+            </script>";
     }
 }
 ?>
@@ -51,8 +51,10 @@ if (isset($registration)) {
                         <!-- the user name input field uses a HTML5 pattern check -->
                         <label for="login_input_username">Username</label>
                         <input id="login_input_username" class="login_input" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" required />
-
                     </div>
+                    <a class="btn btn-success" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Next
+                    </a>
                 </div>
                 <div class="col-md-5">
                 <h3>Pick a user name to login with</h3>
@@ -78,6 +80,9 @@ if (isset($registration)) {
                         <input id="login_input_email" class="login_input" type="email" name="user_email" required />
 
                     </div>
+                    <a class="btn btn-success" onclick="textStuff(document.getElementById('login_input_username').value, 'rorschachCanvas1' )" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Next
+                    </a>
                 </div>
                 <div class="col-md-5">
                     <h3>Enter your email address</h3>
@@ -105,6 +110,9 @@ if (isset($registration)) {
                         <input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" />
 
                     </div>
+                    <a class="btn btn-success" onclick="textStuff(document.getElementById('login_input_password_new').value, 'rorschachCanvas2')" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          Next
+                    </a>
                 </div>
                 <div class="col-md-5">
                    <h3>Create a new password (that you have never used before). Use this ink blot as a visual to help you remember your password. This ink blot looks like a ...</h3>
@@ -137,6 +145,7 @@ if (isset($registration)) {
 
 
                     </div>
+
 
 
 

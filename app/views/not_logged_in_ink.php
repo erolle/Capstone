@@ -32,6 +32,9 @@ if (isset($login)) {
                         <label for="login_input_username">Username</label>
                         <input id="login_input_username" class="form-control" type="text" name="user_name" placeholder="Username" required />
                     </div>
+                    <a class="collapsed btn btn-success" onclick="textStuff(document.getElementById('login_input_username').value, 'rorschachCanvas1' )" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Next
+                        </a>
                 </div>
                 <div class="col-md-5">
                     <h3>Enter your user name</h3>
@@ -54,6 +57,9 @@ if (isset($login)) {
                         <label for="login_input_password">Password</label>
                         <input id="login_input_password" class="form-control" type="password" name="user_password" placeholder="Password part one" autocomplete="off" required />
                     </div>
+                    <a class="collapsed btn btn-success" onclick="textStuff(document.getElementById('login_input_password').value, 'rorschachCanvas2')" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          Next
+                        </a>
                 </div>
                 <div class="col-md-5">
                    <h3>Enter your user password that this ink blot reminded you of </h3>
@@ -82,7 +88,7 @@ if (isset($login)) {
                     </div>
                     <!-- time stamp -->
                     <label for="login_input_start_time"><?php $start_time = new DateTime(); ?></label>
-                    <input id="login_input_start_time" class="login_input" value="<?php echo $start_time->format('U = Y-m-d H:i:s'); ?>" name="start_time" type="hidden"  required />
+                    <input id="login_input_start_time" class="login_input" value="<?php echo $start_time->format('U'); ?>" name="start_time" type="hidden"  required />
                     <br><input class="btn btn-success pull-right" type="submit"  name="login" value="Log in" />
                 </div>
                 <div class="col-md-5">
@@ -112,7 +118,7 @@ if (isset($login)) {
 
     <label for="login_input_start_time"><?php $start_time = new DateTime(); ?></label>
 
-    <input id="login_input_start_time" class="login_input" value="<?php echo $start_time->format('U = Y-m-d H:i:s'); ?>" name="start_time" type="hidden"  required />
+    <input id="login_input_start_time" class="login_input" value="<?php echo $start_time->format('U'); ?>" name="start_time" type="hidden"  required />
 
     <input type="submit"  name="login" value="Log in" />
 

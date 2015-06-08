@@ -97,7 +97,7 @@ class Login
                         $start_time = $_POST['start_time'];
 
                         $sql_attempt = "INSERT INTO login_attempts (user_id, end_time, ip_address, user_browser, at_pass, attempt, start_time)
-                        VALUES ('" . $result_row->user_name . "', '" . $end_time->format('U = Y-m-d H:i:s') . "', '" . $ip_address . "', '" . $user_browser . "', '" . $password . "', '" . $attempt . "', '" . $start_time . "')";
+                        VALUES ('" . $result_row->user_name . "', '" . $end_time->format('U') . "', '" . $ip_address . "', '" . $user_browser . "', '" . $password . "', '" . $attempt . "', '" . $start_time . "')";
 
                         $login_attempts = $this->db_connection->query($sql_attempt);
 
@@ -111,17 +111,50 @@ class Login
                         $start_time = $_POST['start_time'];
 
                         $sql_attempt = "INSERT INTO login_attempts (user_id, end_time, ip_address, user_browser, at_pass, attempt, start_time)
-                        VALUES ('" . $result_row->user_name . "', '" . $end_time->format('U = Y-m-d H:i:s') . "', '" . $ip_address . "', '" . $user_browser . "', '" . $password . "', '" . $attempt . "', '" . $start_time . "')";
+                        VALUES ('" . $result_row->user_name . "', '" . $end_time->format('U') . "', '" . $ip_address . "', '" . $user_browser . "', '" . $password . "', '" . $attempt . "', '" . $start_time . "')";
 
                         $login_attempts = $this->db_connection->query($sql_attempt);
+
+                        // get attempts from db to check number to trys
+                        $sql_attempt_time = "SELECT * FROM `login_attempts` WHERE user_id = '$result_row->user_name' AND attempt = 'fail'";
+
+                        //run query
+                        $login_attempts_time = $this->db_connection->query($sql_attempt_time);
+
+
+                       if($login_attempts_time->num_rows > 4) {
                         // erroe message
-                        $this->errors[] = "Wrong password. Try again.";
+                        $this->errors[] = "<div class='jumbotron alert alert-warning'>
+                                            <div class='container'>
+                                            <h2>You have entered the wrong password again.  Could you please try to remember it one more time?   If you are certain that you cannot remember your password, then
+                                            <a href='end_of_study.php'>click here</a>.</h2>
+                                            </div></div>";
+
+
+                        }else{
+
+
+                            $this->errors[] = "<div class='jumbotron alert alert-warning'>
+                                            <div class='container'>
+                                            <h2>Sorry Wrong password. Try again.</h2>
+                                            </div></div>";
+
+
+                        }
+
                     }
                 } else {
-                    $this->errors[] = "This user does not exist.";
+
+                    $this->errors[] = "<div class='jumbotron alert alert-warning'>
+                                            <div class='container'>
+                                            <h2>Sorry this user does not exist.</h2>
+                                            </div></div>";
                 }
             } else {
-                $this->errors[] = "Database connection problem.";
+                $this->errors[] = "<div class='jumbotron alert alert-warning'>
+                                            <div class='container'>
+                                            <h2>Database connection problem.</h2>
+                                            </div></div>";
             }
         }
     }

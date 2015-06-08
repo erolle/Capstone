@@ -3,13 +3,13 @@
 if (isset($registration)) {
     if ($registration->errors) {
         foreach ($registration->errors as $error) {
-            echo $error;
+            echo "<div class='jumbotron alert alert-warning'><div class='container'><h2>" . $error . "</div></div>";
         }
     }
     if ($registration->messages) {
-        foreach ($registration->messages as $message) {
-            echo $message;
-        }
+        echo "<script type='text/javascript'>
+           window.location = 'thanks_reg.php'
+      </script>";
     }
 }
 ?>
@@ -51,7 +51,9 @@ if (isset($registration)) {
                         <!-- the user name input field uses a HTML5 pattern check -->
                         <label for="login_input_username">Username</label>
                         <input id="login_input_username" class="login_input" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" required />
-
+                        <a class="btn btn-success" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                          Next
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-5">
@@ -76,11 +78,14 @@ if (isset($registration)) {
                         <!-- the email input field uses a HTML5 email type check -->
                         <label for="login_input_email">email</label>
                         <input id="login_input_email" class="login_input" type="email" name="user_email" required />
-
+                        <a class="btn btn-success" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Next
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-5">
                 <h3>Enter your email address</h3>
+
                 </div>
             </div>
         </div>
@@ -98,10 +103,10 @@ if (isset($registration)) {
                 <div class="col-md-5">
                    <div class="form-group">
 
-                        <label for="login_input_password_new">Password </label>
+                        <label for="login_input_password_new">Password </label><br>
                         <input id="login_input_password_new" class="login_input" type="password" name="user_password_new" pattern=".{6,}" required autocomplete="off" />
-                        <br>
-                        <label for="login_input_password_repeat">Repeat password</label>
+                        <br><br><br>
+                        <label for="login_input_password_repeat">Repeat password</label><br>
                         <input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" />
 
                     </div>
@@ -109,7 +114,8 @@ if (isset($registration)) {
                 </div>
                 <div class="col-md-5">
 
-                    <h3>Enter a password (at least 8 characters) which you do not use anywhere else</h3>
+                    <h3>Enter a password (at least 8 characters) which you do not use anywhere else. </h3>
+                    <h4 class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> NOT: Plese do not right down thie password abut make it something that you will remember</h4>
                 </div>
             </div>
         </div>

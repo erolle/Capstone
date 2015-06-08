@@ -45,12 +45,12 @@ class Registration
         } elseif (strlen($_POST['user_password_new']) < 6) {
             $this->errors[] = "Password has a minimum length of 6 characters";
             //
-        } elseif (empty($_POST['user_password_new2']) || empty($_POST['user_password_repeat2'])) {
-            $this->errors[] = "Empty Password";
-        } elseif ($_POST['user_password_new2'] !== $_POST['user_password_repeat2']) {
-            $this->errors[] = "Password and password repeat are not the same";
-        } elseif (strlen($_POST['user_password_new2']) < 6) {
-            $this->errors[] = "Password has a minimum length of 6 characters";
+        //} elseif (empty($_POST['user_password_new2']) || empty($_POST['user_password_repeat2'])) {
+        //    $this->errors[] = "Empty Password";
+        //} elseif ($_POST['user_password_new2'] !== $_POST['user_password_repeat2']) {
+        //    $this->errors[] = "Password and password repeat are not the same";
+        //} elseif (strlen($_POST['user_password_new2']) < 6) {
+          //  $this->errors[] = "Password has a minimum length of 6 characters";
             //
         } elseif (strlen($_POST['user_name']) > 64 || strlen($_POST['user_name']) < 2) {
             $this->errors[] = "Username cannot be shorter than 2 or longer than 64 characters";
@@ -71,8 +71,8 @@ class Registration
             && filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)
             && !empty($_POST['user_password_new'])
             && !empty($_POST['user_password_repeat'])
-            && !empty($_POST['user_password_new2'])
-            && !empty($_POST['user_password_repeat2'])
+            //&& !empty($_POST['user_password_new2'])
+            //&& !empty($_POST['user_password_repeat2'])
             && ($_POST['user_password_new'] . $_POST['user_password_new2']  === $_POST['user_password_repeat'] . $_POST['user_password_repeat2'])
         ) {
             // create a database connection

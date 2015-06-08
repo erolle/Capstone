@@ -5,7 +5,7 @@
 
     </div>
     <div class="col-md-10">
-        <h1>Barrier Mazes: <br>Human Centered Password Authentication System</h1>
+        <h1>Password Authentication System</h1>
         <h4>INFORMED CONSENT FORM</h4>
 
         <h2>PRINCIPAL INVESTIGATOR:</h2>

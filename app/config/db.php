@@ -14,4 +14,4 @@
 define("DB_HOST", "localhost");
 define("DB_NAME", "login");
 define("DB_USER", "capstone_use");
-define("DB_PASS", "j2vTywUSVxYyLmhS5bGr");
+define("DB_PASS", "j2vTywUSVxYyLmhS5bGr$");
