@@ -34,7 +34,10 @@ if (isset($registration)) {
 
 </form>
 -->
-<form method="post" action="register.php" name="registerform">
+<form method="post" action="register.php" name="registerform" autocomplete="off">
+<!-- fix auto fill password -->
+<input type="text" style="display:none"><input type="password" style="display:none">
+<!-- start form -->
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingZero">

@@ -16,6 +16,9 @@ if (isset($login)) {
 
 <!-- login form box -->
 <form method="post" action="login.php" name="loginform">
+<!-- fix auto fill password -->
+<input type="text" style="display:none"><input type="password" style="display:none">
+<!-- start form -->
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingOne">
